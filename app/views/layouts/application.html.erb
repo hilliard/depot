@@ -27,5 +27,12 @@
 		 <%= yield %>
 	 </div>
  </div>
+
+ <div id="cart"
+     <% if @cart.line_items.empty? %>
+        style.=="display: none"
+     <% end %>
+  <% render(@cart) %>
+  >
  </body>
  </html>
