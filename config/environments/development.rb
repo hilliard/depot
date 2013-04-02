@@ -34,4 +34,7 @@ Depot::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # disable email in development mode
+  config.action_mailer.delivery_method = :test
 end
