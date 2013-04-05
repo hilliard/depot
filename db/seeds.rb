@@ -16,6 +16,7 @@
 #---
 # encoding: utf-8
 Product.delete_all
+
 Product.create(:title => 'Web Design for Developers',
                :description =>
                    %{<p>

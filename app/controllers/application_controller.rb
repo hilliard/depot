@@ -8,8 +8,8 @@
 #---
 
 class ApplicationController < ActionController::Base
-	before_filter :authorize
-    protect_from_forgery
+  	 # before_filter :authorize
+     protect_from_forgery
 
   private
 
@@ -24,9 +24,15 @@ class ApplicationController < ActionController::Base
   protected
   
   def authorize
-      unless User.find_by_id(session[:user_id])
-        redirect_to login_url, :notice => "Please Log In"
-      end
-  end
+        unless User.find_by_id(session[:user_id]) or User.count == 0
+            session[:original_uri] = request.request_uri
+            flash[:notice] = "Please log in." 
+            redirect_to(:controller=>"login", :action=>"login")
+        end
+        if (User.count == 0 and request.path_parameters['action'] != "add_user")
+                flash[:notice] = "Please create an account." 
+                redirect_to(:controller=>"login", :action=>"add_user")
+        end
+end
 
 end
