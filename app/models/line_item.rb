@@ -7,10 +7,11 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 class LineItem < ActiveRecord::Base
+  attr_accessible :cart_id, :product_id, :product, :quantity, :title
   belongs_to :order
   belongs_to :product
   belongs_to :cart
-  attr_accessible :cart_id, :product_id, :product, :quantity, :title
+ 
 
   def total_price
   	product.price * quantity
